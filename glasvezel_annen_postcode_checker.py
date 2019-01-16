@@ -12,7 +12,7 @@ for postcode in postcodes:
         url = base_url + endpoint
         r = requests.post(url)
         if r.text[-35:-6] == 'maximaalaantalpogingenbereikt':
-            print('IP geblokkeerd, 10 minuten pauze')
+            print('IP geblokkeerd, 30 minuten pauze')
             time.sleep(1800)
         else:
             endpoint = '?zipcode={}&housenumber={}'.format(postcode[0], str(huisnummer))
