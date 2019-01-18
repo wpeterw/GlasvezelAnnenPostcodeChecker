@@ -21,11 +21,13 @@ for postcode in postcodes:
             r = requests.post(url)
             if r.text[-34:-6] == 'bestellingbijandereaanbieder':
                 counter += 1
-                print(postcode[0], str(huisnummer) + ',Caiway,' + str(counter))
-                line = (postcode[0] + ',' + huisnummer, 'Caiway')
+                line = ('{}, {}, {}, Caiway\n'.format(str(counter), postcode[0], str(huisnummer)))
+                print(line)
                 f.write(str(line))
             elif r.text[-34:-6] == 'kanordernietwijzigenviaadres':
                 counter += 1
-                print(postcode[0], str(huisnummer) + ',Delta,' + str(counter))
-                line = (postcode[0] + ',' + huisnummer, 'Delta')
+                line = ('{}, {}, {}, Delta\n'.format(str(counter), postcode[0], str(huisnummer)))
+                print(line)
                 f.write(str(line))
+
+f.close()
