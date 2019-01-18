@@ -7,7 +7,7 @@ from postcodes import postcodes
 counter = 0
 
 base_url = 'https://www.deltaglasvezel.nl/app/actiecode/checkadres.web'
-sleep = 1500
+sleep = 1800
 
 for postcode in postcodes:
     for huisnummer in range(int(postcode[1]), int(postcode[2]), 1):
@@ -16,14 +16,14 @@ for postcode in postcodes:
         url = base_url + endpoint
         r = requests.post(url)
         if r.text[-35:-6] == 'maximaalaantalpogingenbereikt':
-            line = 'IP geblokkeerd, {} minuten pauze'.format(sleep/60)
+            line = '\nIP geblokkeerd, {} minuten pauze'.format(int(sleep/60))
             print('{} - {}'.format(datetime.now(), line))
             f.write('{} - {}'.format(datetime.now(), line))
             f.close()
-            for i in range(sleep, 0, -1):
-                sys.stdout.write(str(i) + ' ')
+            for i in range(sleep, 0, -60):
+                sys.stdout.write(str(int(i/60)) + ' ')
                 sys.stdout.flush()
-                time.sleep(1)
+                time.sleep(60)
         else:
             endpoint = '?zipcode={}&housenumber={}'.format(postcode[0], str(huisnummer))
             url = base_url + endpoint
