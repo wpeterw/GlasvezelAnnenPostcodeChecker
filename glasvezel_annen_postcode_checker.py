@@ -21,7 +21,6 @@ for postcode in postcodes:
             if r.text[-34:-6] == 'bestellingbijandereaanbieder':
                 counter += 1
                 print('Glasvezel bij een andere aanbieder: ' + postcode[0] + ' met huisnummer ' + str(huisnummer) + 'totaal :' + counter)
-            elif r.text[-5:-1] == 'null':
+            elif r.text[-34:-6] == 'kanordernietwijzigenviaadres':
                 counter += 1
                 print('Glasvezel bij Delta ' + postcode[0] + ' met huisnummer ' + str(huisnummer) + 'totaal :' + counter)
-
