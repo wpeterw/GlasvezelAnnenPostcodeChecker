@@ -5,6 +5,7 @@ from postcodes import postcodes
 counter = 0
 
 base_url = 'https://www.deltaglasvezel.nl/app/actiecode/checkadres.web'
+f = open('glasvezel.txt', 'w')
 
 for postcode in postcodes:
     for huisnummer in range(int(postcode[1]), int(postcode[2]), 1):
@@ -21,6 +22,10 @@ for postcode in postcodes:
             if r.text[-34:-6] == 'bestellingbijandereaanbieder':
                 counter += 1
                 print(postcode[0], str(huisnummer) + ',Caiway,' + str(counter))
+                line = (postcode[0] + ',' + huisnummer, 'Caiway')
+                f.write(str(line))
             elif r.text[-34:-6] == 'kanordernietwijzigenviaadres':
                 counter += 1
                 print(postcode[0], str(huisnummer) + ',Delta,' + str(counter))
+                line = (postcode[0] + ',' + huisnummer, 'Delta')
+                f.write(str(line))
