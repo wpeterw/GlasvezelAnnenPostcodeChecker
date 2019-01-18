@@ -1,4 +1,5 @@
 import requests
+import sys
 import time
 from datetime import datetime
 from postcodes import postcodes
@@ -19,7 +20,10 @@ for postcode in postcodes:
             print('{} - {}'.format(datetime.now(), line))
             f.write('{} - {}'.format(datetime.now(), line))
             f.close()
-            time.sleep(sleep)
+            for i in range(sleep, 0, -1):
+                sys.stdout.write(str(i) + ' ')
+                sys.stdout.flush()
+                time.sleep(1)
         else:
             endpoint = '?zipcode={}&housenumber={}'.format(postcode[0], str(huisnummer))
             url = base_url + endpoint
