@@ -31,11 +31,11 @@ for postcode in postcodes:
             print(r.text)
             if r.text[-34:-6] == 'bestellingbijandereaanbieder':
                 counter += 1
-                print('{} - {}, {}, {}, Caiway'.format(datetime.now(), str(counter), postcode[0], str(huisnummer) + '\n'))
+                print('{} - {}, {}: {}, Caiway'.format(datetime.now(), str(counter), postcode[0], str(huisnummer)))
                 f.write('{} - {}, {}, {}, Delta'.format(datetime.now(), str(counter), postcode[0], str(huisnummer)))
             elif r.text[-34:-6] == 'kanordernietwijzigenviaadres':
                 counter += 1
-                print('{} - {}, {}, {}, Delta'.format(datetime.now(), str(counter), postcode[0], str(huisnummer) + '\n'))
+                print('{} - {}, {}, {}, Delta'.format(datetime.now(), str(counter), postcode[0], str(huisnummer)))
                 f.write('{} - {}, {}, {}, Delta'.format(datetime.now(), str(counter), postcode[0], str(huisnummer)))
             f.close()
 f.close()
